@@ -10,23 +10,23 @@ import com.crm.qa.base.TestBase;
 public class LoginPage extends TestBase{
 	
 	//Page Factory - OR:
-	@FindBy(name="email")
+	@FindBy(xpath="//input[@class='_2IX_2- VJZDxU']")
 	WebElement username;
 	
-	@FindBy(name="password")
+	@FindBy(xpath="//input[@class='_2IX_2- _3mctLh VJZDxU']")
 	WebElement password;
 	
-	@FindBy(xpath="//span[contains(text(),'Log In')]")
-	WebElement loginBtn1;
+	@FindBy(xpath="//span[text()='Forgot?']")
+	WebElement forgotLink;
 	
-	@FindBy(xpath="//div[contains(text(),'Login')]")
-	WebElement loginBtn2;
+	@FindBy(xpath="//button[@class='_2KpZ6l _2HKlqd _3AWRsL']")
+	WebElement loginBtn;
 	
-	@FindBy(xpath="//span[contains(text(),'Sign Up')]")
+	@FindBy(xpath="//a[@class='_14Me7y']")
 	WebElement signUpBtn;
 	
-	@FindBy(xpath="//img[contains(@class,'img-responsive')]")
-	WebElement crmLogo;
+	@FindBy(xpath="//div[text()='My Account']")
+	WebElement myAccountBtn;
 	
 	//Initializing the Page Objects:
 	public LoginPage(){
@@ -38,17 +38,17 @@ public class LoginPage extends TestBase{
 		return driver.getTitle();
 	}
 	
-	public boolean validateCRMImage(){
-		return crmLogo.isDisplayed();
+	public boolean validateMyAccountDropdown(){
+		return myAccountBtn.isDisplayed();
 	}
 	
 	public HomePage login(String un, String pwd){
-		loginBtn1.click();
+		
 		username.sendKeys(un);
 		password.sendKeys(pwd);
 		//loginBtn.click();
 		    	JavascriptExecutor js = (JavascriptExecutor)driver;
-		    	js.executeScript("arguments[0].click();", loginBtn2);
+		    	js.executeScript("arguments[0].click();", loginBtn);
 		    	
 		return new HomePage();
 	}
